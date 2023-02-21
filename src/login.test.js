@@ -12,6 +12,6 @@ test('renders login page', async () => {
             <Login />
         </Router>,
     );
-    const headingElement = screen.getByText(/Login/i);
+    const headingElement = screen.getByText(/Logins/i);
     expect(headingElement).toBeInTheDocument();
 });

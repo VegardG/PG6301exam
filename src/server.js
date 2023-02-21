@@ -32,28 +32,20 @@ app.post('/api/login', async (req, res) => {
         const collection = client.db('alleansatte').collection('brukere');
 
         // Check if the user exists
-        //const user = await collection.findOne({ username });
         if (!user) {
             return res.status(404).json({ error: 'User do not exist' });
         }
 
-        // Check if the password is correct
-        /*const passwordMatch = await bcrypt.compare(password, user.password);
-        if (!passwordMatch) {
-            return res.status(404).json({ error: 'Wrong password' });
-        }*/
         if (password !== user.password) {
             return res.status(404).json({ error: 'Wrong password'});
         }
 
-        // Sign the JWT token and return it to the client
         const token = jwt.sign({ sub: user._id, role: user.role }, 'secretkey');
         res.json({ token, role: user.role });
     } catch (err) {
         console.log(err);
         res.status(500).json({ error: 'Internal server error' });
     } finally {
-        //await client.close();
     }
 });
 
