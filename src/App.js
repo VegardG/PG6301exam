@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './login';
-import ManagerDashboard from './managerdashboard';
+import ManagerDashboard from './managesrdashboard';
 import EmployeeDashboard from './employeedashboard';
 import Home from "./Homepage";
 
