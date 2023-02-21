@@ -6,6 +6,10 @@ function ManagerDashboard() {
     const [newPassword, setNewPassword] = useState('');
     const [newDepartment, setNewDepartment] = useState('');
 
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+    };
 
     useEffect(() => {
         const loadEmployees = async () => {
@@ -43,7 +47,7 @@ function ManagerDashboard() {
         setEmployees(employees.filter((employee) => employee.username !== username));
     };
 
-    return (
+     return (
         <div>
             <h2>Employee list</h2>
             <table>
@@ -55,7 +59,7 @@ function ManagerDashboard() {
                     </tr>
                 </thread>
                 <tbody>
-                    {employees.map((employee) => (
+                {employees.map((employee) => (
                     <tr key={employee.username}>
                         <td>{employee.username}</td>
                         <td>{employee.department}</td>
@@ -63,7 +67,7 @@ function ManagerDashboard() {
                             <button onClick={() => handleDeleteEmployee(employee.username)}>Delete</button>
                         </td>
                     </tr>
-                    ))}
+                ))}
                 </tbody>
             </table>
             <h2>Create Employee</h2>
@@ -82,6 +86,7 @@ function ManagerDashboard() {
                 </div>
                 <button type="submit">Create Employee</button>
             </form>
+            <button onClick={handleLogout}>Logout</button>
         </div>
     );
 }

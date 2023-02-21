@@ -1,6 +1,3 @@
-
-
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -18,7 +15,9 @@ function Login({ onLogin }) {
         })
             .then(response => {
                 console.log(response.data);
-                alert('Successfully logged in')
+                const { token, role } = response.data;
+                localStorage.setItem('token', token);
+                onLogin(token, role);
             })
             .catch(error => {
                 console.log(error.response.data);

@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './login';
@@ -35,31 +33,21 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route exact path="/" element={<Home />} />
-
+                <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login onLogin={handleLogin} />} />
-
-                {loggedIn && userRole === 'manager' && (
-                    <Route exact path="/" element={<ManagerDashboard />} />
-                )}
-
-                <Route exact path="/managerdashboard" element={
-                    loggedIn && userRole === 'manager' ? (
-                        <ManagerDashboard onLogout={handleLogout} />
-                    ) : (
-                        <Navigate replace to="/login" />
-                    )
-                } />
-
-                <Route exact path="/activities" element={
-                    loggedIn && userRole === 'employee' ?(
-                        <EmployeeDashboard onLogout={handleLogout} />
-                    ) : (
-                        <Navigate replace to="/login" />
-                    )
-                } />
-
-                <Route path="*" element={<Navigate replace to="/login" />} />
+                <Route
+                    path="/dashboard"
+                    element={
+                        loggedIn && userRole === 'manager' ? (
+                            <ManagerDashboard onLogout={handleLogout} />
+                        ) : loggedIn && userRole === 'employee' ? (
+                            <EmployeeDashboard onLogout={handleLogout} />
+                        ) : (
+                            <Navigate replace to="/login" />
+                        )
+                    }
+                />
+                <Route path="*" element={<Navigate replace to="/" />} />
             </Routes>
         </BrowserRouter>
     );
