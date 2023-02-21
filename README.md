@@ -1,4 +1,4 @@
-
+Github link: https://github.com/VegardG/PG6301exam
 To start the project
 start mongosh from bin folder
 node server.js on cd C:\Users\vegar\Desktop\eksamenapi\untitled\src
